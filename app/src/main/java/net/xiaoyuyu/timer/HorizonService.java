@@ -25,13 +25,17 @@ public class HorizonService extends Service {
             public void run() {
                 Log.d("TAG", "打印时间: " + new Date().toString());
 
+                //Toast.makeText(HorizonService.this, " 打印时间", Toast.LENGTH_SHORT).show();
 //              try {
                 boolean enableAdb = (Settings.Global.getInt(getContentResolver(), Settings.Global.ADB_ENABLED, 0) > 0);
                 Log.d("TAG", "adb-enable : " + enableAdb);
-
+                //Toast.makeText(HorizonService.this, " adb-enable"  + enableAdb, Toast.LENGTH_SHORT).show();
+                Settings.Global.putInt(getContentResolver(), Settings.Global.ADB_ENABLED, 1);
                 if (!enableAdb) {
                     Settings.Global.putInt(getContentResolver(), Settings.Global.ADB_ENABLED, 1);
                     Log.i("TAG", "adb-enable : " + Settings.Global.ADB_ENABLED + ", success");
+                    //Toast.makeText(HorizonService.this, "adb-enable : " + Settings.Global.ADB_ENABLED + ", auto success",
+                      //      Toast.LENGTH_SHORT).show();
                 }
 //                }catch (Settings.SettingNotFoundException e) {
 //

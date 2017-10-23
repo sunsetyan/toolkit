@@ -13,6 +13,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HorizonService.class);
         startService(intent);
 
+        // 启动本地服务和远程服务
+        startService(new Intent(this, LocalService.class));
+        startService(new Intent(this, RemoteService.class));
+
         setContentView(R.layout.activity_main);
 
 
