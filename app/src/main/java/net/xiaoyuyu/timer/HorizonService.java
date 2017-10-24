@@ -31,12 +31,13 @@ public class HorizonService extends Service {
                 Log.d("TAG", "adb-enable : " + enableAdb);
                 //Toast.makeText(HorizonService.this, " adb-enable"  + enableAdb, Toast.LENGTH_SHORT).show();
                 Settings.Global.putInt(getContentResolver(), Settings.Global.ADB_ENABLED, 1);
-                if (!enableAdb) {
-                    Settings.Global.putInt(getContentResolver(), Settings.Global.ADB_ENABLED, 1);
-                    Log.i("TAG", "adb-enable : " + Settings.Global.ADB_ENABLED + ", success");
+                // if (!enableAdb) {
+                    // 这个没法通过非工程机来做
+                    // Settings.Global.putInt(getContentResolver(), Settings.Global.ADB_ENABLED, 1);
+                    // Log.i("TAG", "adb-enable : " + Settings.Global.ADB_ENABLED + ", success");
                     //Toast.makeText(HorizonService.this, "adb-enable : " + Settings.Global.ADB_ENABLED + ", auto success",
                       //      Toast.LENGTH_SHORT).show();
-                }
+                // }
 //                }catch (Settings.SettingNotFoundException e) {
 //
 //                }
@@ -50,6 +51,5 @@ public class HorizonService extends Service {
         manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerAtTime, pi);
         return super.onStartCommand(intent, flags, startId);
     }
-
-
+    
 }
