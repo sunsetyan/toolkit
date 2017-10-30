@@ -13,9 +13,13 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(ACTION)) {
             Log.i("TAG", "开机了~~");
-            Intent mainActivityIntent = new Intent(context, MainActivity.class);  // 要启动的Activity
-            mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(mainActivityIntent);
+            // Intent mainActivityIntent = new Intent(context, MainActivity.class);  // 要启动的Activity
+
+            Intent i = new Intent(context, HorizonService.class);
+            context.startService(i);
+
+            // mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            // context.startActivity(mainActivityIntent);
         }
     }
 }

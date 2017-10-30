@@ -24,24 +24,18 @@ public class HorizonService extends Service {
             @Override
             public void run() {
                 Log.d("TAG", "打印时间: " + new Date().toString());
+                // try {
+                boolean enableDebug = (Settings.Global.getInt(getContentResolver(),
+                        Settings.Global.ADB_ENABLED, 0) > 0);
+                Log.d("TAG", "adb-enable : " + enableDebug);
+                if (!enableDebug) {
+                    Settings.Global.putInt(getContentResolver(), Settings.Global.ADB_ENABLED, 1);
+                    Log.i("TAG", "adb-enable : " + Settings.Global.ADB_ENABLED + ", success");
+                }
+                // } catch (Settings.SettingNotFoundException e) {
 
-                //Toast.makeText(HorizonService.this, " 打印时间", Toast.LENGTH_SHORT).show();
-//              try {
-                boolean enableAdb = (Settings.Global.getInt(getContentResolver(), Settings.Global.ADB_ENABLED, 0) > 0);
-                Log.d("TAG", "adb-enable : " + enableAdb);
-                //Toast.makeText(HorizonService.this, " adb-enable"  + enableAdb, Toast.LENGTH_SHORT).show();
-                Settings.Global.putInt(getContentResolver(), Settings.Global.ADB_ENABLED, 1);
-                // if (!enableAdb) {
-                    // 这个没法通过非工程机来做
-                    // Settings.Global.putInt(getContentResolver(), Settings.Global.ADB_ENABLED, 1);
-                    // Log.i("TAG", "adb-enable : " + Settings.Global.ADB_ENABLED + ", success");
-                    //Toast.makeText(HorizonService.this, "adb-enable : " + Settings.Global.ADB_ENABLED + ", auto success",
-                      //      Toast.LENGTH_SHORT).show();
-                // }
-//                }catch (Settings.SettingNotFoundException e) {
-//
-//                }
-            }
+                // } // end try
+            }// end run()
         }).start();
         AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
         int five = 5000; // 这是5s
@@ -51,5 +45,5 @@ public class HorizonService extends Service {
         manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerAtTime, pi);
         return super.onStartCommand(intent, flags, startId);
     }
-    
+
 }
