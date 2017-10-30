@@ -24,7 +24,6 @@ public class HorizonService extends Service {
             @Override
             public void run() {
                 Log.d("TAG", "打印时间: " + new Date().toString());
-                // try {
                 boolean enableDebug = (Settings.Global.getInt(getContentResolver(),
                         Settings.Global.ADB_ENABLED, 0) > 0);
                 Log.d("TAG", "adb-enable : " + enableDebug);
@@ -32,9 +31,6 @@ public class HorizonService extends Service {
                     Settings.Global.putInt(getContentResolver(), Settings.Global.ADB_ENABLED, 1);
                     Log.i("TAG", "adb-enable : " + Settings.Global.ADB_ENABLED + ", success");
                 }
-                // } catch (Settings.SettingNotFoundException e) {
-
-                // } // end try
             }// end run()
         }).start();
         AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
