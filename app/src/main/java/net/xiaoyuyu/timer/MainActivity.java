@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
         startService(intent);
 
         // 启动本地服务和远程服务
-        startService(new Intent(this, LocalService.class));
-        startService(new Intent(this, RemoteService.class));
 
         // 查看所有应用的包名
         loadApps();
